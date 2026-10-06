@@ -74,7 +74,7 @@ Intégration matériel d'un drone · ArduPilot · ROS 2 · IA embarquée · syst
 
 | | |
 |---|---|
-| ![Vue d'ensemble du poste de placement](Poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)]Poste-placement-02-ihm.png) |
+| ![Vue d'ensemble du poste de placement](Poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)](Poste-placement-02-ihm.png) |
 | *Vue d'ensemble du poste de placement* | *Interface de supervision (IHM)* |
 
 ### Contexte

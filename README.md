@@ -22,7 +22,7 @@ Ce dépôt présente, de façon détaillée, plusieurs de mes projets en électr
 
 | | |
 |---|---|
-| ![Wattmètre numérique, vue 1](images/wattmetre-01.jpg) | ![Wattmètre numérique, vue 2](images/wattmetre-02.jpg) |
+| ![Wattmètre numérique, vue 1](images/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](images/wattmetre-02.jpeg) |
 
 ### Objectif
 Réaliser un wattmètre numérique complet en suivant toutes les étapes d'un projet d'ingénierie, de l'analyse du besoin jusqu'à l'exploitation des mesures.
@@ -49,7 +49,7 @@ Conception de chaîne d'acquisition · simulation de circuits · conception de P
 
 | | |
 |---|---|
-| ![Drone, vue 1](images/drone-01.jpg) | ![Drone, vue 2](images/drone-02.jpg) |
+| ![Drone, vue 1](images/drone-01.jpeg) | ![Drone, vue 2](images/drone-02.jpeg) |
 
 ### Objectif
 Acquérir des compétences sur les engins volants et approfondir ROS 2 sur une plateforme réelle, que je monte et configure moi-même.

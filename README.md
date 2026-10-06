@@ -74,7 +74,7 @@ Intégration matériel d'un drone · ArduPilot · ROS 2 · IA embarquée · syst
 
 | | |
 |---|---|
-| ![Vue d'ensemble du poste de placement](poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)]poste-placement-02-ihm.png) |
+| ![Vue d'ensemble du poste de placement](Poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)]Poste-placement-02-ihm.png) |
 | *Vue d'ensemble du poste de placement* | *Interface de supervision (IHM)* |
 
 ### Contexte
@@ -92,8 +92,6 @@ Le programme, développé sous **TIA Portal**, est découpé en **6 GRAFCET** in
 | **Semi-Auto — Tâche 2** | Tapis, traitement d'une pièce unique |
 | **Manuel** | Pilotage individuel de chaque actionneur, avec interdictions de sécurité |
 
-![GRAFCET de sélection de marche](poste-placement-03-grafcet-selection.png)
-*GRAFCET de sélection de marche*
 
 ### Gestion des modes
 - **Auto / Semi-Auto** : activables uniquement depuis les **conditions initiales** (vérins rentrés et en haut).

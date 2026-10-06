@@ -22,7 +22,7 @@ Ce dépôt présente, de façon détaillée, plusieurs de mes projets en électr
 
 | | |
 |---|---|
-| ![Wattmètre numérique, vue 1](images/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](images/wattmetre-02.jpeg) |
+| ![Wattmètre numérique, vue 1](/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](wattmetre-02.jpeg) |
 
 ### Objectif
 Réaliser un wattmètre numérique complet en suivant toutes les étapes d'un projet d'ingénierie, de l'analyse du besoin jusqu'à l'exploitation des mesures.
@@ -49,7 +49,7 @@ Conception de chaîne d'acquisition · simulation de circuits · conception de P
 
 | | |
 |---|---|
-| ![Drone, vue 1](images/drone-01.jpeg) | ![Drone, vue 2](images/drone-02.jpeg) |
+| ![Drone, vue 1](drone-01.jpeg) | ![Drone, vue 2](drone-02.jpeg) |
 
 ### Objectif
 Acquérir des compétences sur les engins volants et approfondir ROS 2 sur une plateforme réelle, que je monte et configure moi-même.
@@ -74,7 +74,7 @@ Intégration matériel d'un drone · ArduPilot · ROS 2 · IA embarquée · syst
 
 | | |
 |---|---|
-| ![Vue d'ensemble du poste de placement](images/poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)](images/poste-placement-02-ihm.png) |
+| ![Vue d'ensemble du poste de placement](poste-placement-01-vue-ensemble.png) | ![Interface de supervision (IHM)]poste-placement-02-ihm.png) |
 | *Vue d'ensemble du poste de placement* | *Interface de supervision (IHM)* |
 
 ### Contexte
@@ -92,7 +92,7 @@ Le programme, développé sous **TIA Portal**, est découpé en **6 GRAFCET** in
 | **Semi-Auto — Tâche 2** | Tapis, traitement d'une pièce unique |
 | **Manuel** | Pilotage individuel de chaque actionneur, avec interdictions de sécurité |
 
-![GRAFCET de sélection de marche](images/poste-placement-03-grafcet-selection.png)
+![GRAFCET de sélection de marche](poste-placement-03-grafcet-selection.png)
 *GRAFCET de sélection de marche*
 
 ### Gestion des modes

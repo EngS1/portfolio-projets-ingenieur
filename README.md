@@ -22,7 +22,7 @@ Ce dépôt présente, de façon détaillée, plusieurs de mes projets en électr
 
 | | |
 |---|---|
-| ![Wattmètre numérique, vue 1](/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](wattmetre-02.jpeg) |
+| ![Wattmètre numérique, vue 1](/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](wattmetre-02.jpeg) | ![Wattmètre numérique, vue 3](wattmetre-03.jpeg) |
 
 ### Objectif
 Réaliser un wattmètre numérique complet en suivant toutes les étapes d'un projet d'ingénierie, de l'analyse du besoin jusqu'à l'exploitation des mesures.

@@ -1,7 +1,7 @@
 # Portfolio de projets d'ingénierie — Daouda SYLLA
 
 Élève-ingénieur en 3e année à l'**ENSISA** (Mulhouse), spécialité **Automatique et Systèmes Embarqués**.
-Ce dépôt présente, de façon détaillée, plusieurs de mes projets en électronique, automatisation et systèmes embarqués.
+Ce dépôt présente, de façon détaillée, plusieurs de mes projets en robotique, électronique, automatisation et systèmes embarqués.
 
 **Contact :** daoudesylla@gmail.com · [LinkedIn](https://linkedin.com/in/sylla-daouda) · [GitHub](https://github.com/EngS1)
 
@@ -9,37 +9,40 @@ Ce dépôt présente, de façon détaillée, plusieurs de mes projets en électr
 
 | # | Projet | Domaine | Outils |
 |---|--------|---------|--------|
-| 1 | [Wattmètre numérique](#1-wattmètre-numérique) | Électronique, acquisition, traitement du signal | LTspice, KiCad, C/C++ |
+| 1 | [Navigation autonome d'un robot mobile (Turtle Week Gobi)](#1-navigation-autonome-dun-robot-mobile-turtle-week-gobi) | Robotique mobile, perception LIDAR, navigation | LIDAR, évitement d'obstacles |
 | 2 | [Drone quadricoptère ArduPilot / ROS 2](#2-drone-quadricoptère-ardupilot--ros-2) | Robotique aérienne, systèmes embarqués | Pixhawk, ArduPilot, ROS 2 |
-| 3 | [Automatisation d'un poste de placement](#3-automatisation-dun-poste-de-placement) | Automatisation industrielle | Siemens TIA Portal, GRAFCET, IHM |
-| 4 | [Autres réalisations](#4-autres-réalisations) | Contrôle-commande, systèmes embarqués | Matlab/Simulink, FreeRTOS, Vector CANoe |
+| 3 | [Wattmètre numérique](#3-wattmètre-numérique) | Électronique, acquisition, traitement du signal | LTspice, KiCad, C/C++ |
+| 4 | [Automatisation d'un poste de placement](#4-automatisation-dun-poste-de-placement) | Automatisation industrielle | Siemens TIA Portal, GRAFCET, IHM |
+| 5 | [Autres réalisations](#5-autres-réalisations) | Contrôle-commande, systèmes embarqués, IA embarquée | Matlab/Simulink, FreeRTOS, Vector CANoe |
 
 ---
 
-## 1. Wattmètre numérique
+## 1. Navigation autonome d'un robot mobile (Turtle Week Gobi)
 
-**Projet de 1re année · Conception d'un instrument de mesure, du cahier des charges à la visualisation des mesures**
+**Projet de 1re année · ENSISA 2024-2025 · groupe 119, 4 étudiants · robot mobile équipé d'un LIDAR**
 
-| | |
-|---|---|
-| ![Wattmètre numérique, vue 1](/wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](wattmetre-02.jpeg) | ![Wattmètre numérique, vue 3](wattmetre-03.jpeg) |
+![Poster du projet Turtle Week Gobi](turtle-week-gobi-poster.jpeg)
 
 ### Objectif
-Réaliser un wattmètre numérique complet en suivant toutes les étapes d'un projet d'ingénierie, de l'analyse du besoin jusqu'à l'exploitation des mesures.
+Concevoir un robot autonome capable de se déplacer vers une destination donnée, avec une navigation sûre et efficace.
 
-### Démarche
-1. **Analyse du cahier des charges** : identification des exigences et des contraintes de l'instrument.
-2. **Architecture technique** : découpage de la chaîne de mesure en blocs fonctionnels.
-3. **Simulation sous LTspice** : validation du fonctionnement des circuits avant fabrication.
-4. **Schématique sous KiCad** : reprise et finalisation de la conception électronique.
-5. **Conception du PCB sous KiCad** : placement, routage et préparation de la carte.
-6. **Réalisation et soudure** de la carte.
-7. **Acquisition des données** par le système embarqué.
-8. **Traitement du signal numérique** (C/C++) : calcul des grandeurs à partir des échantillons acquis.
-9. **Visualisation** des mesures et des résultats après calcul.
+### Perception de l'environnement
+- **Acquisition LIDAR** : récupération de l'environnement par une fonction de scan.
+- **Filtrage des données** : seules les mesures situées dans un rayon de **40 cm** autour du robot sont conservées et visualisées.
+- **Détection des obstacles proches** : un algorithme isole les obstacles et définit un **point moyen** qui les caractérise.
+
+### Navigation
+- **Repère local** : la position initiale du robot sert d'origine.
+- **Déplacement par points de passage** : le robot rejoint des points donnés, puis **revient à l'origine**.
+- **Contournement d'obstacles** : le robot évite les obstacles rencontrés sur le chemin vers la cible.
+
+### Scénario de déplacement
+Départ, passage par trois cibles successives avec obstacles à contourner entre elles, puis retour au point de départ.
 
 ### Compétences mobilisées
-Conception de chaîne d'acquisition · simulation de circuits · conception de PCB · soudure · programmation C/C++ embarquée · traitement numérique du signal · intégration matériel/logiciel.
+Perception par LIDAR · filtrage de données capteur · détection d'obstacles · navigation autonome · évitement d'obstacles · travail en équipe.
+
+**Projets liés :** [pilotage gestuel du robot ROMI avec détection d'obstacles](https://github.com/EngS1/romi-gesture-control-uno-q) · [plateforme drone ArduPilot / ROS 2](#2-drone-quadricoptère-ardupilot--ros-2)
 
 ---
 
@@ -68,7 +71,34 @@ Intégration matériel d'un drone · ArduPilot · ROS 2 · IA embarquée · syst
 
 ---
 
-## 3. Automatisation d'un poste de placement
+## 3. Wattmètre numérique
+
+**Projet de 1re année · Conception d'un instrument de mesure, du cahier des charges à la visualisation des mesures**
+
+| | | |
+|---|---|---|
+| ![Wattmètre numérique, vue 1](wattmetre-01.jpeg) | ![Wattmètre numérique, vue 2](wattmetre-02.jpeg) | ![Wattmètre numérique, vue 3](wattmetre-03.jpeg) |
+
+### Objectif
+Réaliser un wattmètre numérique complet en suivant toutes les étapes d'un projet d'ingénierie, de l'analyse du besoin jusqu'à l'exploitation des mesures.
+
+### Démarche
+1. **Analyse du cahier des charges** : identification des exigences et des contraintes de l'instrument.
+2. **Architecture technique** : découpage de la chaîne de mesure en blocs fonctionnels.
+3. **Simulation sous LTspice** : validation du fonctionnement des circuits avant fabrication.
+4. **Schématique sous KiCad** : reprise et finalisation de la conception électronique.
+5. **Conception du PCB sous KiCad** : placement, routage et préparation de la carte.
+6. **Réalisation et soudure** de la carte.
+7. **Acquisition des données** par le système embarqué.
+8. **Traitement du signal numérique** (C/C++) : calcul des grandeurs à partir des échantillons acquis.
+9. **Visualisation** des mesures et des résultats après calcul.
+
+### Compétences mobilisées
+Conception de chaîne d'acquisition · simulation de circuits · conception de PCB · soudure · programmation C/C++ embarquée · traitement numérique du signal · intégration matériel/logiciel.
+
+---
+
+## 4. Automatisation d'un poste de placement
 
 **TP d'automates programmables (2A ASE) · Siemens TIA Portal, GRAFCET, IHM · réalisé en binôme avec Muhammed CEREN**
 
@@ -91,7 +121,6 @@ Le programme, développé sous **TIA Portal**, est découpé en **6 GRAFCET** in
 | **Semi-Auto — Tâche 1** | Manipulateur, une seule séquence par ordre de départ cycle |
 | **Semi-Auto — Tâche 2** | Tapis, traitement d'une pièce unique |
 | **Manuel** | Pilotage individuel de chaque actionneur, avec interdictions de sécurité |
-
 
 ### Gestion des modes
 - **Auto / Semi-Auto** : activables uniquement depuis les **conditions initiales** (vérins rentrés et en haut).
@@ -119,15 +148,15 @@ Programmation d'automate sous TIA Portal · modélisation en GRAFCET · logique 
 
 ---
 
-## 4. Autres réalisations
+## 5. Autres réalisations
 
 | Projet | Description | Outils |
 |--------|-------------|--------|
 | **[IA embarquée pour le pilotage du robot ROMI](https://github.com/EngS1/romi-gesture-control-uno-q)** | Pilotage d'un robot mobile par reconnaissance gestuelle, modèle d'IA exécuté sur Arduino UNO Q et commande par Bluetooth | Python, C++, Zephyr RTOS |
 | **[MeetingPro](https://github.com/EngS1/Projet_CEREN_SYLLA)** | Application de réservation de salles avec interface graphique | Python, tkinter |
+| **[Vision+ — modélisation SysML](https://github.com/EngS1/vision-plus-sysml)** | Modélisation SysML complète d'une aide à la mobilité pour personnes malvoyantes : exigences, cas d'utilisation, BDD, IBD, séquences | SysML, MBSE |
 | **Pilotage distribué sur bus CAN — robot ROMI** | Modélisation et supervision d'un réseau multiplexé : analyse de messagerie, création de bases de données CAN, tableau de bord virtuel (signalisation, télémétrie batterie, groupe motopropulseur) | Vector CANoe, CAN, C++ |
 | **Régulation de température temps réel** | Architecture multitâche avec gestion des priorités, préemption et synchronisation inter-tâches | C/C++, FreeRTOS |
 | **Identification et commande d'un système Twin Rotor** | Identification expérimentale, modélisation dynamique, analyse des couplages et perturbations, synthèse d'une commande robuste | Matlab/Simulink |
 | **Travaux de contrôle-commande** | Synthèse de correcteurs, retour d'état, identification de systèmes | Matlab/Simulink, SISOTOOL |
-| **Projets de systèmes embarqués** | Programmation de microcontrôleurs, communication série et temps réel | C/C++ |    | **[Vision+ — modélisation SysML](https://github.com/EngS1/vision-plus-sysml)** | Modélisation SysML complète d'une aide à la mobilité pour personnes malvoyantes : exigences, cas d'utilisation, BDD, IBD, séquences | SysML, MBSE 
-
+| **Projets de systèmes embarqués** | Programmation de microcontrôleurs, communication série et temps réel | C/C++ |

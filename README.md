@@ -51,7 +51,7 @@ Perception par LIDAR · filtrage de données capteur · détection d'obstacles �
 
 **Projet de 3e année · ENSISA 2026-2027 · en cours · travail en équipe · TurtleBot3 Burger, OpenCR, ROS 2**
 
-![TurtleBot3 Burger, premier robot monté](turtlebot3_4roues.jpeg)
+![TurtleBot3 Burger modifié, premier robot monté](turtlebot3_4roues.jpeg)
 *Premier robot monté : le TurtleBot3 Burger, base de départ du projet.*
 
 ### Objectif

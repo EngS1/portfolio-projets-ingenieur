@@ -10,10 +10,11 @@ Ce dépôt présente, de façon détaillée, plusieurs de mes projets en robotiq
 | # | Projet | Domaine | Outils |
 |---|--------|---------|--------|
 | 1 | [Navigation autonome d'un robot mobile (Turtle Week Gobi)](#1-navigation-autonome-dun-robot-mobile-turtle-week-gobi) | Robotique mobile, perception LIDAR, navigation | LIDAR, évitement d'obstacles |
-| 2 | [Drone quadricoptère ArduPilot / ROS 2](#2-drone-quadricoptère-ardupilot--ros-2) | Robotique aérienne, systèmes embarqués | Pixhawk, ArduPilot, ROS 2 |
-| 3 | [Wattmètre numérique](#3-wattmètre-numérique) | Électronique, acquisition, traitement du signal | LTspice, KiCad, C/C++ |
-| 4 | [Automatisation d'un poste de placement](#4-automatisation-dun-poste-de-placement) | Automatisation industrielle | Siemens TIA Portal, GRAFCET, IHM |
-| 5 | [Autres réalisations](#5-autres-réalisations) | Contrôle-commande, systèmes embarqués, IA embarquée | Matlab/Simulink, FreeRTOS, Vector CANoe |
+| 2 | [TurtleBot3 Mecanum, plateforme omnidirectionnelle à 4 roues](#2-turtlebot3-mecanum-plateforme-omnidirectionnelle-à-4-roues) | Robotique mobile, cinématique, systèmes embarqués | TurtleBot3, OpenCR, ROS 2, Dynamixel |
+| 3 | [Drone quadricoptère ArduPilot / ROS 2](#3-drone-quadricoptère-ardupilot--ros-2) | Robotique aérienne, systèmes embarqués | Pixhawk, ArduPilot, ROS 2 |
+| 4 | [Wattmètre numérique](#4-wattmètre-numérique) | Électronique, acquisition, traitement du signal | LTspice, KiCad, C/C++ |
+| 5 | [Automatisation d'un poste de placement](#5-automatisation-dun-poste-de-placement) | Automatisation industrielle | Siemens TIA Portal, GRAFCET, IHM |
+| 6 | [Autres réalisations](#6-autres-réalisations) | Contrôle-commande, systèmes embarqués, IA embarquée | Matlab/Simulink, FreeRTOS, Vector CANoe |
 
 ---
 
@@ -42,11 +43,68 @@ Départ, passage par trois cibles successives avec obstacles à contourner entre
 ### Compétences mobilisées
 Perception par LIDAR · filtrage de données capteur · détection d'obstacles · navigation autonome · évitement d'obstacles · travail en équipe.
 
-**Projets liés :** [pilotage gestuel du robot ROMI avec détection d'obstacles](https://github.com/EngS1/romi-gesture-control-uno-q) · [plateforme drone ArduPilot / ROS 2](#2-drone-quadricoptère-ardupilot--ros-2)
+**Projets liés :** [TurtleBot3 Mecanum, plateforme omnidirectionnelle à 4 roues](#2-turtlebot3-mecanum-plateforme-omnidirectionnelle-à-4-roues) · [pilotage gestuel du robot ROMI avec détection d'obstacles](https://github.com/EngS1/romi-gesture-control-uno-q) · [plateforme drone ArduPilot / ROS 2](#3-drone-quadricoptère-ardupilot--ros-2)
 
 ---
 
-## 2. Drone quadricoptère ArduPilot / ROS 2
+## 2. TurtleBot3 Mecanum, plateforme omnidirectionnelle à 4 roues
+
+**Projet de 3e année · ENSISA 2026-2027 · en cours · travail en équipe · TurtleBot3 Burger, OpenCR, ROS 2**
+
+![TurtleBot3 Burger, premier robot monté](turtlebot3-burger.jpeg)
+*Premier robot monté : le TurtleBot3 Burger, base de départ du projet.*
+
+### Objectif
+Transformer un TurtleBot3 Burger (robot différentiel à 2 roues) en robot **omnidirectionnel à 4 roues Mecanum**, puis monter 3 autres robots et les faire fonctionner en parallèle sous ROS 2.
+
+### Étapes du projet
+1. Prise en main du TurtleBot3 Burger.
+2. Recherche sur les roues omnidirectionnelles, en particulier les roues Mecanum.
+3. Modification du robot pour passer à 4 roues Mecanum.
+4. Étude technique de la logique de fonctionnement de ces roues.
+5. Montage de 3 autres robots et mise en parallèle.
+
+### Architecture
+Clavier / scripts Python (`Twist` sur `/cmd_vel`) → Raspberry Pi (Ubuntu 22.04, ROS 2 Humble) → USB → **OpenCR** (STM32F7, firmware C++) → bus TTL Dynamixel → 4 moteurs Dynamixel.
+
+### Réalisé à ce jour
+- Prise en main du Burger : bringup ROS 2 et téléopération.
+- Scripts Python ROS 2 : cercle, carré, pilotage aux flèches du clavier (boucle ouverte).
+- Isolation des communications entre robots via `ROS_DOMAIN_ID`.
+- Étude de la cinématique Mecanum.
+- Chaîne de développement OpenCR sous Linux : IDE Arduino, paquet OpenCR, règles udev, droits du port série.
+- Firmware ROBOTIS d'exemple `turtlebot3_mecanum` compilé et téléversé sur l'OpenCR (CRC vérifié), avec retour possible au firmware ROS 2 du Burger.
+- Relecture critique du firmware d'exemple : points d'attention identifiés (saturations, gestion d'erreur du driver), non encore corrigés.
+
+### En cours et à venir
+- **En cours** : validation du matériel sur le nouveau châssis (IDs des moteurs, sens de rotation de chaque roue).
+- **À venir** : firmware ROS 2 à 4 moteurs (prise en compte de `linear.y`), odométrie, modèle URDF, puis les 3 autres robots (un `ROS_DOMAIN_ID` par robot).
+- **Perspectives (non réalisées)** : navigation autonome (SLAM, Nav2) et fusion odométrie + IMU pour compenser le glissement des roues Mecanum.
+
+### Cinématique inverse Mecanum
+Avec `vx` (avant), `vy` (latéral), `ω` (rotation), `r` le rayon de roue et `k = L + W` (demi-empattement + demi-voie) :
+
+```
+ω_AG = (vx - vy - k·ω) / r
+ω_AD = (vx + vy + k·ω) / r
+ω_RG = (vx + vy - k·ω) / r
+ω_RD = (vx - vy + k·ω) / r
+```
+
+Convention : ROS prend +y vers la gauche ; le firmware d'exemple ROBOTIS utilise la convention opposée, à gérer lors de l'intégration ROS 2. Limites connues : glissement des rouleaux, sol lisse nécessaire, 4 roues pour 3 degrés de liberté (système surdéterminé).
+
+### Difficultés rencontrées
+- **Installation du paquet OpenCR 1.5.3** : l'archive publiée par ROBOTIS est au format gzip alors qu'elle est nommée `.tar.bz2`, ce qui fait échouer le gestionnaire de cartes (« Stream is not in the BZip2 format »). Diagnostic avec `file`, puis extraction manuelle.
+- **IDE Arduino en snap** : dossier de données différent de `~/.arduino15`, accès au port série à configurer (`dialout`, règles udev).
+
+### Compétences mobilisées
+ROS 2 (Humble) · Python · C/C++ embarqué (OpenCR / Arduino) · bus Dynamixel · Linux · cinématique de robots mobiles · débogage système · travail en équipe.
+
+**Projet lié :** [Navigation autonome d'un robot mobile (Turtle Week Gobi)](#1-navigation-autonome-dun-robot-mobile-turtle-week-gobi)
+
+---
+
+## 3. Drone quadricoptère ArduPilot / ROS 2
 
 **Projet personnel · Monter une plateforme de drone pour progresser en ROS 2 et sur les engins volants**
 
@@ -71,7 +129,7 @@ Intégration matériel d'un drone · ArduPilot · ROS 2 · IA embarquée · syst
 
 ---
 
-## 3. Wattmètre numérique
+## 4. Wattmètre numérique
 
 **Projet de 1re année · Conception d'un instrument de mesure, du cahier des charges à la visualisation des mesures**
 
@@ -98,7 +156,7 @@ Conception de chaîne d'acquisition · simulation de circuits · conception de P
 
 ---
 
-## 4. Automatisation d'un poste de placement
+## 5. Automatisation d'un poste de placement
 
 **TP d'automates programmables (2A ASE) · Siemens TIA Portal, GRAFCET, IHM · réalisé en binôme avec Muhammed CEREN**
 
@@ -148,7 +206,7 @@ Programmation d'automate sous TIA Portal · modélisation en GRAFCET · logique 
 
 ---
 
-## 5. Autres réalisations
+## 6. Autres réalisations
 
 | Projet | Description | Outils |
 |--------|-------------|--------|
